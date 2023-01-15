@@ -1,3 +1,5 @@
+/*---------------------------Universal Styling */
+
 body {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
@@ -9,7 +11,7 @@ textarea {
   resize: none;
   color: #000000;
   border-left: 1px solid black;
-  padding: 10px;
+  padding: 20px;
 }
 
 .description {
@@ -27,9 +29,14 @@ textarea {
 .hour {
   background-color: #ffffff;
   color: #000000;
-  border-top: 1px dashed #000000;
+  border-top: 2px dashed #000000;
+}
+/* ---------------------------Overriding body font-size to keep in line with header */
+#date-display {
+  font-size: 1.25rem;
 }
 
+/* ---------------------------Styling for Past, Present & Future Elements of Calendar time blocks as JavaScript Defines each time block*/
 .past {
   background-color: #d3d3d3;
   color: white;
@@ -45,12 +52,27 @@ textarea {
   color: white;
 }
 
+/* Table element styles */
+.custom-row {
+  white-space: pre-wrap;
+  height: 80px;
+  border-top: 1px solid white;
+}
+
+.custom-td {
+  border-top: 2px dashed grey;
+  border-bottom: 2px dashed grey;
+}
+
+/*---------------------------Button Styling */
 .saveBtn {
   border-left: 1px solid black;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
   background-color: #06aed5;
   color: white;
+  padding: 37px;
+  border: none;
 }
 
 .saveBtn i:hover {
