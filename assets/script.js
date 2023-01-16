@@ -1,17 +1,6 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
-
-//---------------------------Variables used for JavaScript Functions:
-// var timeDisplayEl = $('#date-display');
-// var timePast = $('#textarea');
-// var timePresent = $('#textarea');
-// var timeFuture = $('#textarea');
-// var timeBlockEntry = $('#description');
-
 //---------------------------Variables used for JavaScript Functions:
 var timeDisplayEl = $('#date-display');
-var tableDisplayEl = $('#table-display')
+var workScheduleEl = $('#table-display')
 
 //---------------------------FUNCTION: for Displaying the date in header 
 function displayDate() {
@@ -20,22 +9,23 @@ function displayDate() {
 }
 
 //---------------------------Establish current date
-var dateStatement = moment().format('dddd, MMMM Do YYYY');
+// var dateStatement = moment().format('dddd, MMMM DD YYYY');
 
 //---------------------------Establish current hour
 var currentHour = moment().hour()
 
-//---------------------------Establish an arry of hours > use to loop through  
+//---------------------------Establishing an array of hours looping through  
 var hours = [];
-var availableHours = moment('12');
+var workHours = moment('12');
 new Array(24).fill().map((acc, index)=> {
-    hours.push(availableHours.format('hA'))
-    availableHours = availableHours.add(1, 'hour');
+    hours.push(workHours.format('hA'))
+    workHours = workHours.add(1, 'hour');
 })
-
-//---------------------------Loop through array of hours for 9 hours (available working hours in the day)
-//---------------------------Add class & styles to elements as they are created
+// console.log(hours); this logged 24 hours in console (testing)
+//---------------------------Loop through array of hours for 9 work hours also adding class & styles to elements as they are created
 for(i = 0; i < 9; i++) {
+    // console.log(i);  
+    // console.log(i + 9); Testing/Confirmed this array prints the hours by taking the last element starting from midnight + 9 to give the hour to display. 
     // set tableRowEl id to the index displayed on on the calendar to easily identify which row belongs to which hour
     tableRowEl = $('<tr>').attr('id', i+9).addClass('custom-row');
     timeCol = $('<td>').text(hours[i+9]).addClass('col-2 col-md-1 hour text-center py-3')
@@ -64,7 +54,7 @@ for(i = 0; i < 9; i++) {
         activityCol,
         saveCol
     );
-    tableDisplayEl.append(tableRowEl);
+    workScheduleEl.append(tableRowEl);
 }
 //---------------------------Function to save note into local storage
 function saveNote(event){
@@ -77,7 +67,7 @@ function saveNote(event){
     return;
 }
 
-//---------------------------function to loadNotes on page refresh
+//---------------------------Function: Loads notes on page refresh and does not delete
 function loadNotes(){
     for(i=9; i<18; i++){
        let storedNote = localStorage.getItem(i);
